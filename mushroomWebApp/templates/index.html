@@ -7,24 +7,59 @@
     <title>Mushroom Type Form</title>
     <style>
       body {
+        font-size: 20px;
+        margin: 0 0;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        background-color: #ffcba5;
+        background-size: cover;
+        color: white;
+      }
+
+      h1 {
+        text-align: center;
       }
 
       select {
         margin: 10px 10px;
         padding: 10px 10px;
       }
+
+      form {
+        color: black;
+        border-radius: 25px;
+        background-image: url("static/img/mushroomBackground.jpg");
+        padding: 15px 15px;
+        margin: 50px 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 65vw;
+        min-width: 60vw;
+        height: auto;
+        border: 15px solid #fde5b4;
+      }
+      input[type="submit"] {
+        font-size: 25px;
+        border-radius: 15px;
+        width: 140px;
+      }
     </style>
   </head>
   <body>
+    <h1>
+      Please fill out the form to find out if your mushroom might be poisonous
+      or not.
+    </h1>
     <form action="/predict" method="post">
       <label for="cap-shape">Cap Shape:</label>
       <select name="cap-shape" id="cap-shape">
         <option value="b">bell</option>
         <option value="c">conical</option>
-        <option value="x">convex</option>
+        <option value="x" selected="selected">convex</option>
         <option value="f">flat</option>
         <option value="k">knobbed</option>
         <option value="s">sunken</option></select
@@ -34,7 +69,7 @@
       <select name="cap-surface" id="cap-surface">
         <option value="f">fibrous</option>
         <option value="g">grooves</option>
-        <option value="y">scaly</option>
+        <option value="y" selected="selected">scaly</option>
         <option value="s">smooth</option></select
       ><br />
 
@@ -48,13 +83,13 @@
         <option value="p">pink</option>
         <option value="u">purple</option>
         <option value="e">red</option>
-        <option value="w">white</option>
+        <option value="w" selected="selected">white</option>
         <option value="y">yellow</option></select
       ><br />
 
       <label for="bruises">Bruises:</label>
       <select name="bruises" id="bruises">
-        <option value="t">yes</option>
+        <option value="t" selected="selected">yes</option>
         <option value="f">no</option></select
       ><br />
 
@@ -66,7 +101,7 @@
         <option value="y">fish</option>
         <option value="f">foul</option>
         <option value="m">musty</option>
-        <option value="p">pungent</option>
+        <option value="p" selected="selected">pungent</option>
         <option value="s">spicy</option>
         <option value="n">none</option></select
       ><br />
@@ -75,13 +110,13 @@
       <select name="gill-attachment" id="gill-attachment">
         <option value="a">attached</option>
         <option value="d">descending</option>
-        <option value="f">free</option>
+        <option value="f" selected="selected">free</option>
         <option value="n">notched</option></select
       ><br />
 
       <label for="gill-spacing">Gill Spacing:</label>
       <select name="gill-spacing" id="gill-spacing">
-        <option value="c">close</option>
+        <option value="c" selected="selected">close</option>
         <option value="w">crowded</option>
         <option value="d">distant</option></select
       ><br />
@@ -89,13 +124,13 @@
       <label for="gill-size">Gill Size:</label>
       <select name="gill-size" id="gill-size">
         <option value="b">broad</option>
-        <option value="n">narrow</option></select
+        <option value="n" selected="selected">narrow</option></select
       ><br />
 
       <label for="gill-color">Gill Color:</label>
       <select name="gill-color" id="gill-color">
         <option value="k">black</option>
-        <option value="n">brown</option>
+        <option value="n" selected="selected">brown</option>
         <option value="b">buff</option>
         <option value="h">chocolate</option>
         <option value="g">gray</option>
@@ -110,7 +145,7 @@
 
       <label for="stalk-shape">Stalk Shape:</label>
       <select name="stalk-shape" id="stalk-shape">
-        <option value="e">enlarging</option>
+        <option value="e" selected="selected">enlarging</option>
         <option value="t">tapering</option></select
       ><br />
 
@@ -119,10 +154,9 @@
         <option value="b">bulbous</option>
         <option value="c">club</option>
         <option value="u">cup</option>
-        <option value="e">equal</option>
+        <option value="e" selected="selected">equal</option>
         <option value="z">rhizomorphs</option>
-        <option value="r">rooted</option>
-        <option value="?">missing</option></select
+        <option value="r">rooted</option></select
       ><br />
 
       <label for="stalk-surface-above-ring"
@@ -132,8 +166,9 @@
         <option value="f">fibrous</option>
         <option value="y">scaly</option>
         <option value="k">silky</option>
-        <option value="s">smooth</option></select
-      ><br />
+        <option value="s" selected="selected">smooth</option>
+      </select>
+      <br />
 
       <label for="stalk-surface-below-ring"
         >Stalk Surface Below the Ring:</label
@@ -142,7 +177,7 @@
         <option value="f">fibrous</option>
         <option value="y">scaly</option>
         <option value="k">silky</option>
-        <option value="s">smooth</option></select
+        <option value="s" selected="selected">smooth</option></select
       ><br />
 
       <label for="stalk-color-above-ring">Stalk Color Above the Ring:</label>
@@ -154,7 +189,7 @@
         <option value="o">orange</option>
         <option value="p">pink</option>
         <option value="e">red</option>
-        <option value="w">white</option>
+        <option value="w" selected="selected">white</option>
         <option value="y">yellow</option></select
       ><br />
 
@@ -167,7 +202,7 @@
         <option value="o">orange</option>
         <option value="p">pink</option>
         <option value="e">red</option>
-        <option value="w">white</option>
+        <option value="w" selected="selected">white</option>
         <option value="y">yellow</option></select
       ><br />
 
@@ -176,13 +211,13 @@
         <option value="n">brown</option>
         <option value="o">orange</option>
         <option value="w">white</option>
-        <option value="y">yellow</option></select
+        <option value="y" selected="selected">yellow</option></select
       ><br />
 
       <label for="ring-number">Ring Number:</label>
       <select name="ring-number" id="ring-number">
         <option value="n">none</option>
-        <option value="o">one</option>
+        <option value="o" selected="selected">one</option>
         <option value="t">two</option></select
       ><br />
 
@@ -192,16 +227,15 @@
         <option value="e">evanescent</option>
         <option value="f">flaring</option>
         <option value="l">large</option>
-        <option value="p">pendant</option>
+        <option value="p" selected="selected">pendant</option>
         <option value="s">sheathing</option>
-        <option value="n">none</option>
         <option value="z">zone</option>
         <option value="n">none</option></select
       ><br />
 
       <label for="spore-print-color">Spore Print Color:</label>
       <select name="spore-print-color" id="spore-print-color">
-        <option value="k">black</option>
+        <option value="k" selected="selected">black</option>
         <option value="n">brown</option>
         <option value="b">buff</option>
         <option value="h">chocolate</option>
@@ -217,7 +251,7 @@
         <option value="a">abundant</option>
         <option value="c">clustered</option>
         <option value="n">numerous</option>
-        <option value="s">scattered</option>
+        <option value="s" selected="selected">scattered</option>
         <option value="v">several</option>
         <option value="y">solitary</option></select
       ><br />
@@ -228,12 +262,12 @@
         <option value="l">leaves</option>
         <option value="m">meadows</option>
         <option value="p">paths</option>
-        <option value="u">urban</option>
+        <option value="u" selected="selected">urban</option>
         <option value="w">waste</option>
         <option value="d">woods</option></select
       ><br />
 
-      <input type="submit" value="predict" />
+      <input type="submit" value="Predict" />
     </form>
   </body>
 </html>
