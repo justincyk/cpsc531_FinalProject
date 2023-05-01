@@ -1,13 +1,11 @@
 from pyspark.sql import SparkSession
 from pyspark.ml.feature import StringIndexer, OneHotEncoder, VectorAssembler
 from pyspark.ml import Pipeline
-from pyspark.ml.linalg import Vectors
 import pandas as pd
 from pyspark.ml.stat import ChiSquareTest
 from pyspark.sql.functions import when, col
 from pyspark.ml.classification import LogisticRegression, DecisionTreeClassifier, RandomForestClassifier, GBTClassifier, NaiveBayes
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
-import matplotlib.pyplot as plot
 import numpy as np
 
 # How to start spark standalone cluster and worker node
@@ -41,8 +39,6 @@ categorical_cols = df.columns
 # remove 'class' column since that is our dependent column
 categorical_cols.remove('class')
 
-print(categorical_cols)
-
 # Create a list of 'StringIndexer' objects which turns the categorical columns into numerical indices
 string_indexers = [StringIndexer(inputCol=col, outputCol=f"{col}Index", handleInvalid='skip') for col in
                    categorical_cols]
@@ -60,12 +56,15 @@ pipeline = Pipeline(stages=[*string_indexers, encoder, assembler])
 
 # Apply the sequence of transformations to df
 model = pipeline.fit(df)
-df.write.option("header",True).option("delimiter",",").csv("mushrooms_df")
-model.save('pModel')
+df.write.option("header",True).option("delimiter",",").csv("mushrooms_df", mode='overwrite')
+model.write().overwrite().save("pModel")
 df_encoded = model.transform(df)
 
 # Encode the 'class' attribute so that it is numerical. 1 means it is poisonous and 0 means it is not.
 df_encoded = df_encoded.withColumn('label', when(col('class') == 'p', 1).otherwise(0))
+
+# Show transformed dataframe
+df_encoded.show()
 
 # Show the new dataframe
 df_encoded_final = df_encoded.select('cap-shapeEncoded', 'cap-surfaceEncoded', 'cap-colorEncoded',
@@ -79,6 +78,7 @@ df_encoded_final = df_encoded.select('cap-shapeEncoded', 'cap-surfaceEncoded', '
 
 # Loop through categorical column to calculate the chi-squared test statistics between each categorical attribute
 # and the target attribute 'label' which is 'class'
+# If the p-value is <= 0.05 there is a significant association between the class variable and the other variable
 for col in categorical_cols:
     results = ChiSquareTest.test(df_encoded_final, f"{col}Encoded", 'label').head()
     # get the p-value result
@@ -89,21 +89,12 @@ for col in categorical_cols:
 
 (training, testing) = df_encoded_final.randomSplit([0.7, 0.3])
 
+print("\n")
 # Using Logistic Regression for machine learning
 lr = LogisticRegression(featuresCol='features', labelCol='label', maxIter=10)
 lr_model = lr.fit(training)
 # Save model to file
-lr_model.save("lr_model")
-
-# Graphing the coefficients of the logistics regression model
-# coefficients = lr_model.coefficients
-# plot.figure(figsize=(8,8))
-# plot.bar(range(len(coefficients)), coefficients)
-# print(df_encoded.columns)
-# plot.xticks(range(21), df_encoded_final.columns[:-2], rotation=90)
-# plot.ylabel('Coefficient Value')
-# plot.title('Logistic Regression Coefficients')
-# plot.show()
+lr_model.write().overwrite().save('lr_model')
 
 lr_predictions = lr_model.transform(testing)
 lr_predictions.show()
@@ -111,11 +102,12 @@ lr_evaluator = BinaryClassificationEvaluator(rawPredictionCol='rawPrediction', l
 lr_accuracy = lr_evaluator.evaluate(lr_predictions)
 print(f"Logistic Regression Accuracy: {lr_accuracy}")
 
+print("\n")
 # Decision Tree Classifier
 dt = DecisionTreeClassifier(featuresCol='features', labelCol='label')
 dt_model = dt.fit(training)
 # Save model to file
-dt_model.save("dt_model")
+dt_model.write().overwrite().save('dt_model')
 
 dt_predictions = dt_model.transform(testing)
 dt_evaluator = BinaryClassificationEvaluator(rawPredictionCol='rawPrediction', labelCol='label')
@@ -123,11 +115,12 @@ dt_accuracy = dt_evaluator.evaluate(dt_predictions)
 print(f"Decision Tree Classification Accuracy: {dt_accuracy}")
 print(dt_model.toDebugString)
 
+print("\n")
 # Random Forest Classifier
 rf = RandomForestClassifier(featuresCol='features', labelCol='label')
 rf_model = rf.fit(training)
 # Save model to file
-rf_model.save("rf_model")
+rf_model.write().overwrite().save('rf_model')
 
 rf_predictions = rf_model.transform(testing)
 rf_evaluator = BinaryClassificationEvaluator(rawPredictionCol='rawPrediction', labelCol='label')
@@ -135,11 +128,12 @@ rf_accuracy = rf_evaluator.evaluate(rf_predictions)
 print(f"Random Forest Classification Accuracy: {rf_accuracy}")
 print(rf_model.featureImportances)
 
+print("\n")
 # Gradient-Boosted Tree Classifier
 gbt = GBTClassifier(featuresCol='features', labelCol='label')
 gbt_model = gbt.fit(training)
 # Save model to file
-gbt_model.save("gbt_model")
+gbt_model.write().overwrite().save('gbt_model')
 
 gbt_predictions = gbt_model.transform(testing)
 gbt_evaluator = BinaryClassificationEvaluator(rawPredictionCol='rawPrediction', labelCol='label')
@@ -148,17 +142,19 @@ print(f"Gradient-Boosted Tree Classification Accuracy: {gbt_accuracy}")
 print(gbt_model.featureImportances)
 
 
-
+print("\n")
 # Naive Bayes Classifier
 nb = NaiveBayes(featuresCol='features', labelCol='label')
 nb_model = nb.fit(training)
 # Save model to file
-nb_model.save("nb_model")
+nb_model.write().overwrite().save('nb_model')
 
 nb_predictions = nb_model.transform(testing)
 nb_evaluator = BinaryClassificationEvaluator(rawPredictionCol='rawPrediction', labelCol='label')
 nb_accuracy = nb_evaluator.evaluate(nb_predictions)
 print(f"Naive Bayes Classification Accuracy: {nb_accuracy}")
 print(nb_model.theta.toArray())
+print("\n")
+print("\n")
 
 spark.stop()

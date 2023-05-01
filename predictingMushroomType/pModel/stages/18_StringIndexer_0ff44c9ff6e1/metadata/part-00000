@@ -1,1 +1,0 @@
-{"class":"org.apache.spark.ml.feature.StringIndexerModel","timestamp":1682832805141,"sparkVersion":"3.4.0","uid":"StringIndexer_0ff44c9ff6e1","paramMap":{"inputCol":"spore-print-color","handleInvalid":"skip","outputCol":"spore-print-colorIndex"},"defaultParamMap":{"stringOrderType":"frequencyDesc","handleInvalid":"error","outputCol":"StringIndexer_0ff44c9ff6e1__output"}}
