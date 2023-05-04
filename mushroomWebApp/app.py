@@ -70,4 +70,8 @@ def predict():
         return render_template('unknown.html')
     else:
         return render_template('edible.html')
+    
 
+@app.route("/chart")
+def chart_page():
+    return render_template('chart.html')

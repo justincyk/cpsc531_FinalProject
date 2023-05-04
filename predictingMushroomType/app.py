@@ -7,6 +7,7 @@ from pyspark.sql.functions import when, col
 from pyspark.ml.classification import LogisticRegression, DecisionTreeClassifier, RandomForestClassifier, GBTClassifier, NaiveBayes
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
 import numpy as np
+import json
 
 # How to start spark standalone cluster and worker node
 # 1) Go to /Applications/spark-3.4.0-bin-hadoop3
@@ -51,7 +52,7 @@ encoder = OneHotEncoder(inputCols=[f"{col}Index" for col in categorical_cols],
 # Assemble the one-hot encoded vectors into a single 'feature' vector
 assembler = VectorAssembler(inputCols=encoder.getOutputCols(), outputCol='features')
 
-# Create a Pipeline object which will apply the sequence of transformations to a Dataframe
+# Create a Pipeline object which will apply the sequence of transformations to the dataframe
 pipeline = Pipeline(stages=[*string_indexers, encoder, assembler])
 
 # Apply the sequence of transformations to df
@@ -60,11 +61,13 @@ df.write.option("header",True).option("delimiter",",").csv("mushrooms_df", mode=
 model.write().overwrite().save("pModel")
 df_encoded = model.transform(df)
 
-# Encode the 'class' attribute so that it is numerical. 1 means it is poisonous and 0 means it is not.
+# Encode the 'class' attribute so that it is numerical: 1 means it is poisonous and 0 means it is not
 df_encoded = df_encoded.withColumn('label', when(col('class') == 'p', 1).otherwise(0))
 
 # Show transformed dataframe
-df_encoded.show()
+df_encoded.show(vertical=True)
+pandas_df = df_encoded.toPandas()
+print(pandas_df)
 
 # Show the new dataframe
 df_encoded_final = df_encoded.select('cap-shapeEncoded', 'cap-surfaceEncoded', 'cap-colorEncoded',
@@ -91,7 +94,7 @@ for col in categorical_cols:
 
 print("\n")
 # Using Logistic Regression for machine learning
-lr = LogisticRegression(featuresCol='features', labelCol='label', maxIter=10)
+lr = LogisticRegression(featuresCol='features', labelCol='label')
 lr_model = lr.fit(training)
 # Save model to file
 lr_model.write().overwrite().save('lr_model')
@@ -126,7 +129,10 @@ rf_predictions = rf_model.transform(testing)
 rf_evaluator = BinaryClassificationEvaluator(rawPredictionCol='rawPrediction', labelCol='label')
 rf_accuracy = rf_evaluator.evaluate(rf_predictions)
 print(f"Random Forest Classification Accuracy: {rf_accuracy}")
-print(rf_model.featureImportances)
+importantAttr = dict(zip(training.columns, rf_model.featureImportances))
+importantAttr = sorted(importantAttr.items(), key=lambda x: x[1], reverse=True)
+importantAttr = json.dumps(importantAttr, indent=3)
+print(importantAttr)
 
 print("\n")
 # Gradient-Boosted Tree Classifier
@@ -139,7 +145,10 @@ gbt_predictions = gbt_model.transform(testing)
 gbt_evaluator = BinaryClassificationEvaluator(rawPredictionCol='rawPrediction', labelCol='label')
 gbt_accuracy = gbt_evaluator.evaluate(gbt_predictions)
 print(f"Gradient-Boosted Tree Classification Accuracy: {gbt_accuracy}")
-print(gbt_model.featureImportances)
+importantAttr = dict(zip(training.columns, gbt_model.featureImportances))
+importantAttr = sorted(importantAttr.items(), key=lambda x: x[1], reverse=True)
+importantAttr = json.dumps(importantAttr, indent=3)
+print(importantAttr)
 
 
 print("\n")
