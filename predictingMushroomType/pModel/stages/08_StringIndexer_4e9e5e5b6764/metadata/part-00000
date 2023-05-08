@@ -1,1 +1,0 @@
-{"class":"org.apache.spark.ml.feature.StringIndexerModel","timestamp":1683168666865,"sparkVersion":"3.4.0","uid":"StringIndexer_4e9e5e5b6764","paramMap":{"inputCol":"gill-color","handleInvalid":"skip","outputCol":"gill-colorIndex"},"defaultParamMap":{"stringOrderType":"frequencyDesc","handleInvalid":"error","outputCol":"StringIndexer_4e9e5e5b6764__output"}}
