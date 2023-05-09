@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.StringIndexerModel","timestamp":1683590493950,"sparkVersion":"3.4.0","uid":"StringIndexer_95ef4fc78cce","paramMap":{"inputCol":"gill-attachment","handleInvalid":"skip","outputCol":"gill-attachmentIndex"},"defaultParamMap":{"stringOrderType":"frequencyDesc","handleInvalid":"error","outputCol":"StringIndexer_95ef4fc78cce__output"}}

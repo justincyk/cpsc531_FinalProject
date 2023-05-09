@@ -8,6 +8,8 @@ from pyspark.ml.classification import LogisticRegression, DecisionTreeClassifier
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
 import numpy as np
 import json
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
 
 # How to start spark standalone cluster and worker node
 # 1) Go to /Applications/spark-3.4.0-bin-hadoop3
@@ -16,14 +18,33 @@ import json
 # 4) Start worker node -> ./sbin/start-worker.sh spark://Justins-MacBook-Pro-7.local:7077
 # 5) run -> ./bin/spark-submit \
 #           --master spark://Justins-MacBook-Pro-7.local:7077 \
-#           /Users/justinkim/Documents/CSUF/Spring2023/CPSC531/finalProject/predictingMushroomType/app.py \
+#           /Users/justinkim/Documents/CSUF/Spring2023/CPSC531/finalProjectMongodb/predictingMushroomType/app.py \
 #           1000
 
 # Create new SparkSession with app name ml-mushroomsType
 spark = SparkSession.builder.appName('ml-mushroomsType').getOrCreate()
 
-# Read the 'mushrooms.csv' file as a DataFrame
-df = spark.read.csv('file:///Users/justinkim/Documents/CSUF/Spring2023/CPSC531/finalProject/predictingMushroomType/mushrooms.csv', header=True, inferSchema=True)
+# URI for mongodb database connection
+uri = "mongodb+srv://mushroomAdmin:DrLUCn6a96FJPk0T@mushroomdata.6jqgppn.mongodb.net/?retryWrites=true&w=majority"
+
+# Create a new client and connect to the server
+client = MongoClient(uri, server_api=ServerApi('1'))
+
+# Send a ping to confirm a successful connection
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
+
+# Access mushroom collection in cpsc531 database
+db = client['cpsc531_FinalProject']
+mushroomCollection = db['mushrooms']
+cursor = mushroomCollection.find({}, {'_id': 0})
+list_cur = list(cursor)
+
+# Create spark dataframe from collection
+df = spark.createDataFrame(list_cur)
 
 # See the datatype of each column
 df.printSchema()

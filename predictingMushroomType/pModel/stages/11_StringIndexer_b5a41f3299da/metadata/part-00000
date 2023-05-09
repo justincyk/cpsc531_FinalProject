@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.StringIndexerModel","timestamp":1683590495042,"sparkVersion":"3.4.0","uid":"StringIndexer_b5a41f3299da","paramMap":{"inputCol":"ring-number","outputCol":"ring-numberIndex","handleInvalid":"skip"},"defaultParamMap":{"stringOrderType":"frequencyDesc","outputCol":"StringIndexer_b5a41f3299da__output","handleInvalid":"error"}}

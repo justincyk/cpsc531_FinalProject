@@ -1,1 +1,0 @@
-{"class":"org.apache.spark.ml.feature.StringIndexerModel","timestamp":1683174143568,"sparkVersion":"3.4.0","uid":"StringIndexer_2854148340bf","paramMap":{"inputCol":"habitat","outputCol":"habitatIndex","handleInvalid":"skip"},"defaultParamMap":{"handleInvalid":"error","outputCol":"StringIndexer_2854148340bf__output","stringOrderType":"frequencyDesc"}}
