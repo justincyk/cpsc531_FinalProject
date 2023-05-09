@@ -1,3 +1,3 @@
-# CPSC531 Final Project Implementaion
+# Spring 2023 CPSC 531-03 Final Project Implementaion
 ## Member: Justin Kim
 
