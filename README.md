@@ -4,6 +4,6 @@
 
 ## Project Functionality
 1. 2 parts
-  ⋅⋅* Mushroom Prediction Web Application using Flask, HTML, CSS
-  ⋅⋅* Predicting Mushroom Type ( Poisonous or Edible ) Python Application
+⋅⋅ Mushroom Prediction Web Application using Flask, HTML, CSS
+⋅⋅ Predicting Mushroom Type ( Poisonous or Edible ) Python Application
 
