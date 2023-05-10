@@ -10,7 +10,8 @@
 
 #### * Both option 1 and 2 are run on Spark Standalone Cluster by submitting app.py as a job *
 
-### 1) Mushroom Prediction Python Application using Mongodb (PyMongo MongoClient, PyMongo ServerApi, Pyspark sparkSession, PySpark Dataframe, PySpark Machine learning Models, PySpark features - StringIndexer, OneHotEncoder, Vector Assembler, Pyspark Pipeline, PySpark BinaryClassificationEvaluator, Pandas)
+### 1) Mushroom Prediction Python Application using Mongodb
+( PyMongo MongoClient, PyMongo ServerApi, Pyspark sparkSession, PySpark Dataframe, PySpark Machine learning Models, PySpark features - StringIndexer, OneHotEncoder, Vector Assembler, Pyspark Pipeline, PySpark BinaryClassificationEvaluator, Pandas )
    - Connects to Mongodb using Pymongo server and client to access cpsc531_FinalProject database mushroom collection
    - Create sparkSession called 'ml-mushroomType'
    - Convert Mongodb mushroom collection to Spark Dataframe using sparkSession createDataFrame method
@@ -22,7 +23,8 @@
    - Save fitted machine learning models to use for web application
 
 
-### 2) Mushroom Prediction Python Application using local storage (Pyspark sparkSession, PySpark Dataframe, PySpark Machine learning Models, PySpark features - StringIndexer, OneHotEncoder, Vector Assembler, Pyspark Pipeline, PySpark BinaryClassificationEvaluator, Pandas)
+### 2) Mushroom Prediction Python Application using local storage
+( Pyspark sparkSession, PySpark Dataframe, PySpark Machine learning Models, PySpark features - StringIndexer, OneHotEncoder, Vector Assembler, Pyspark Pipeline, PySpark BinaryClassificationEvaluator, Pandas )
    - Create sparkSession called 'ml-mushroomType'
    - Retrieve mushroom.csv file from local storage
    - Convert mushroom.csv file to Spark Dataframe using sparkSession
@@ -34,7 +36,8 @@
    - Save fitted machine learning models to use for web application
 
 
-### 3) Mushroom Prediction Web Application (Flask, HTML, CSS, saved PySpark Machine Learning models, PySpark sparkSession, PySpark Pipeline, Mongodb )
+### 3) Mushroom Prediction Web Application
+( Flask, HTML, CSS, saved PySpark Machine Learning models, PySpark sparkSession, PySpark Pipeline, Mongodb )
    - User fills out a form about the characteristics of a mushroom they want to know about
    - User submits data form once they finished filling out the form
    - Website will then refresh and inform user if the mushroom is poisonous or not
