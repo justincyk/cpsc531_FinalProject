@@ -13,39 +13,41 @@
 ### 1) Mushroom Prediction Python Application using Mongodb
 ( PyMongo MongoClient, PyMongo ServerApi, Pyspark sparkSession, PySpark Dataframe, PySpark Machine learning Models, PySpark features - StringIndexer, OneHotEncoder, Vector Assembler, Pyspark Pipeline, PySpark BinaryClassificationEvaluator, Pandas )
    - Connects to Mongodb using Pymongo server and client to access cpsc531_FinalProject database mushroom collection
-   - Create sparkSession called 'ml-mushroomType'
-   - Convert Mongodb mushroom collection to Spark Dataframe using sparkSession createDataFrame method
-   - Perform data analysis and transformation on dataframe using StringIndexer, OneHotEncoder, and VectorAssembler
-   - Split dataframe into training and testing dataframes
-   - Fit and transform training dataframe on Machine learning models (Logistic Regression, Decision Tree Classifer, Random Forest Classifier, Gradient Boosting, Naive Bayes)
-   - Predict Mushroom type on test dataframe and compare the prediction value with actual value to get prediction accuracy
-   - Find the most important attributes from the machine learning models
-   - Save fitted machine learning models to use for web application
+   - Creates sparkSession called 'ml-mushroomType'
+   - Converts Mongodb mushroom collection to Spark Dataframe using sparkSession createDataFrame method
+   - Performs data analysis and transformation on dataframe using StringIndexer, OneHotEncoder, and VectorAssembler
+   - Splits dataframe into training and testing dataframes
+   - Fits and transforms training dataframe on Machine learning models (Logistic Regression, Decision Tree Classifer, Random Forest Classifier, Gradient Boosting, Naive Bayes)
+   - ML Models predict Mushroom type on test dataframe
+   - Compares the prediction result with actual Mushroom type values to get prediction accuracy
+   - Finds the most important attributes from the machine learning models
+   - Saves fitted machine learning models to use for web application
 
 
 ### 2) Mushroom Prediction Python Application using local storage
 ( Pyspark sparkSession, PySpark Dataframe, PySpark Machine learning Models, PySpark features - StringIndexer, OneHotEncoder, Vector Assembler, Pyspark Pipeline, PySpark BinaryClassificationEvaluator, Pandas )
-   - Create sparkSession called 'ml-mushroomType'
-   - Retrieve mushroom.csv file from local storage
-   - Convert mushroom.csv file to Spark Dataframe using sparkSession
-   - - Perform data analysis and transformation on dataframe
-   - Split dataframe into training and testing dataframes
-   - Fit and transform training dataframe on Machine learning models (Logistic Regression, Decision Tree Classifer, Random Forest Classifier, Gradient Boosting, Naive Bayes)
-   - Predict Mushroom type on test dataframe and compare the prediction value with actual value to get prediction accuracy
-   - Find the most important attributes from the machine learning models
-   - Save fitted machine learning models to use for web application
+   - Creates sparkSession called 'ml-mushroomType'
+   - Retrieves mushroom.csv file from local storage
+   - Converts mushroom.csv file to Spark Dataframe using sparkSession
+   - Performs data analysis and transformation on dataframe
+   - Splits dataframe into training and testing dataframes
+   - Fits and transforms training dataframe on Machine learning models (Logistic Regression, Decision Tree Classifer, Random Forest Classifier, Gradient Boosting, Naive Bayes)
+   - ML Models predict Mushroom type on test dataframe
+   - Compares the prediction result with actual Mushroom type values to get prediction accuracy
+   - Finds the most important attributes from the machine learning models
+   - Saves fitted machine learning models to use for web application
 
 
 ### 3) Mushroom Prediction Web Application
 ( Flask, HTML, CSS, saved PySpark Machine Learning models, PySpark sparkSession, PySpark Pipeline, Mongodb )
    - User fills out a form about the characteristics of a mushroom they want to know about
    - User submits data form once they finished filling out the form
-   - Website will then refresh and inform user if the mushroom is poisonous or not
-   - Website can also display analytical graphs fetched from Mongodb mushroom collection by going on '/chart' 
+   - Web Application will then refresh and inform user if the mushroom is poisonous or not
+   - Website can also display analytical graphs fetched from Mongodb mushroom collection by user going on '/chart' 
    - Website form was created using HTML and CSS
    - Once user submits their data, data will be sent to Flask
-   - Flask will read the data, convert data to dictionary, start sparkSession, convert dictioanry to a PySpark Dataframe using the mushroom dataframe schema
+   - Flask will read the data, convert data to dictionary, create and start sparkSession, convert dictioanry to a PySpark Dataframe using Mushroom dataframe schema
    - Flask will then transform the dataframe using saved Pyspark Pipeline model
-   - Once dataframe is transformed, Flask will run the dataframe on the five saved ML models
-   - The majority result/prediction from the five ML model will be outputted to the user using HTML and CSS
+   - Once dataframe is transformed, Flask will run the user's dataframe on the five saved ML models
+   - The majority result/prediction from the five ML models will be outputted to the user using HTML and CSS
    - Flask also directs users that go on '/chart' to a html page that renders data graphs that are fetched and continuosly updated from Mongodb database
