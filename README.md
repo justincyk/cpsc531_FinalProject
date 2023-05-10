@@ -2,6 +2,7 @@
 ### Member: Justin Kim
 
 
+
 ## Project Functionality, Architecture & Design
 ### 3 Parts:
    - Predicting Mushroom Type ( Poisonous or Edible ) Python Application using mushroom.csv from local storage and PySpark ML models
@@ -10,8 +11,9 @@
 
 #### * Both option 1 and 2 are run on Spark Standalone Cluster by submitting app.py as a job *
 
+
 ### 1) Mushroom Prediction Python Application using Mongodb
-( PyMongo MongoClient, PyMongo ServerApi, Pyspark sparkSession, PySpark Dataframe, PySpark Machine learning Models, PySpark features - StringIndexer, OneHotEncoder, Vector Assembler, Pyspark Pipeline, PySpark BinaryClassificationEvaluator, Pandas )
+#### Used: PyMongo MongoClient, PyMongo ServerApi, Pyspark sparkSession, PySpark Dataframe, PySpark Machine learning Models, PySpark features - StringIndexer, OneHotEncoder, Vector Assembler, Pyspark Pipeline, PySpark BinaryClassificationEvaluator, Pandas
    - Connects to Mongodb using Pymongo server and client to access cpsc531_FinalProject database mushroom collection
    - Creates sparkSession called 'ml-mushroomType'
    - Converts Mongodb mushroom collection to Spark Dataframe using sparkSession createDataFrame method
@@ -25,7 +27,7 @@
 
 
 ### 2) Mushroom Prediction Python Application using local storage
-( Pyspark sparkSession, PySpark Dataframe, PySpark Machine learning Models, PySpark features - StringIndexer, OneHotEncoder, Vector Assembler, Pyspark Pipeline, PySpark BinaryClassificationEvaluator, Pandas )
+#### Used: Pyspark sparkSession, PySpark Dataframe, PySpark Machine learning Models, PySpark features - StringIndexer, OneHotEncoder, Vector Assembler, Pyspark Pipeline, PySpark BinaryClassificationEvaluator, Pandas
    - Creates sparkSession called 'ml-mushroomType'
    - Retrieves mushroom.csv file from local storage
    - Converts mushroom.csv file to Spark Dataframe using sparkSession
@@ -39,7 +41,7 @@
 
 
 ### 3) Mushroom Prediction Web Application
-( Flask, HTML, CSS, saved PySpark Machine Learning models, PySpark sparkSession, PySpark Pipeline, Mongodb )
+#### Used: Flask, HTML, CSS, saved PySpark Machine Learning models, PySpark sparkSession, PySpark Pipeline, Mongodb
    - User fills out a form about the characteristics of a mushroom they want to know about
    - User submits data form once they finished filling out the form
    - Web Application will then refresh and inform user if the mushroom is poisonous or not
@@ -51,3 +53,17 @@
    - Once dataframe is transformed, Flask will run the user's dataframe on the five saved ML models
    - The majority result/prediction from the five ML models will be outputted to the user using HTML and CSS
    - Flask also directs users that go on '/chart' to a html page that renders data graphs that are fetched and continuosly updated from Mongodb database
+
+
+
+## Project Deployment Instructions
+
+
+
+## Steps to Run the Application
+
+
+
+## Test Results
+
+
