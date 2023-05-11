@@ -56,11 +56,16 @@
 
 
 
-## Project Deployment Instructions
+## Project Deployment Instructions ( On Apple Macbook )
+1. Clone GitHub repository to local computer
+2. Access cloned GitHub repository on terminal
+3. Once in directory of cloned GitHub repository, type `source bin/activate` to start venv environment
+4. Once venv environment is started, type `pip3 install -r requirements.txt` to download necessary packages to run Python ML Mushroom Type Prediction Application and Mushroom Type Prediction Web Application
 
 
 
 ## Steps to Run the Application
+
 
 
 
