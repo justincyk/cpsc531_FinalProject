@@ -19,7 +19,7 @@
    - Converts Mongodb mushroom collection to Spark Dataframe using sparkSession createDataFrame method
    - Performs data analysis and transformation on dataframe using StringIndexer, OneHotEncoder, and VectorAssembler
    - Splits dataframe into training and testing dataframes
-   - Fits and transforms training dataframe on Machine learning models (Logistic Regression, Decision Tree Classifer, Random Forest Classifier, Gradient Boosting, Naive Bayes)
+   - Fits and transforms training dataframe on Machine learning models ( Logistic Regression, Decision Tree Classifer, Random Forest Classifier, Gradient Boosting, Naive Bayes )
    - ML Models predict Mushroom type on test dataframe
    - Compares the prediction result with actual Mushroom type values to get prediction accuracy
    - Finds the most important attributes from the machine learning models
@@ -71,7 +71,7 @@
    -  All saved ML models in the current directory will be accessed and rewritten every time application is run
    -  Results from application will be printed to terminal
 2. To run Python ML Mushroom Type Prediction Application without Spark Standalone Cluster using Mongodb Database
-   - Change Git branch by typing `git checkout mongodbBranch`
+   -  Change Git branch by typing `git checkout mongodbBranch`
    -  Go to `./predictingMushroomType` folder
    -  Type and enter `python3 app.py` to run application
    -  Mushroom data will be retrieved by accessing Mongodb database through PyMongo
@@ -86,11 +86,25 @@
            /Users/justinkim/Documents/CSUF/Spring2023/CPSC531/finalProjectMongodb/predictingMushroomType/app.py \
            1000` )
    - Check status of job by accessing web ui ( Ex. `http://localhost:8080/` )
+   - End Worker Node
+   - End Master Node
  4. To run Mushroom Type Prediction Web Application
-   - 
+   - Go to directory `./mushroomWebApp`
+   - Type and enter `Flask run`
+   - Access web application by going on `http://127.0.0.1:5000`
+   - Fill out the form according to your mushroom's characteristics
+   - Submit form once form is completed
+   - Web Application will refresh and inform you if the Mushroom is poisonous or not
+   - Go to `http://127.0.0.1:5000/chart` to access data analysis graphs fetched from Mongodb database
+   - Press control+c on terminal to end Flask session
 
 
 
 ## Test Results
+   1. ML Logistic Regression Prediction Model Accuracy: 
+   2. ML Decision Tree Classifier Prediction Model Accuracy:
+   3. ML Random Forest Classifier Prediction Model Accuracy:
+   4. ML Gradient Boosting Prediction Model Accuracy:
+   5. ML Naive Bayes Prediction Model Accuracy:
 
 
