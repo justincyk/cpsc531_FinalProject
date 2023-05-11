@@ -77,8 +77,17 @@
    -  Mushroom data will be retrieved by accessing Mongodb database through PyMongo
    -  All saved ML models in the current directory will be accessed and rewritten every time application is run
 3. To run Python ML Mushroom Type Prediction Application on Spark Standalone Cluster using Mongodb Database
-   - Have 
-
+   - Go to current directory Spark ( Ex. `cd /Applications/spark-3.4.0-bin-hadoop3` )
+   - Start Master Node ( Ex. `./sbin/start-master.sh` )
+   - Start Worker Node and provide address of Master Node ( Ex. `./sbin/start-worker.sh spark://Justins-MacBook-Pro-7.local:7077` )
+   - Run Spark Job and provide address of master node and location/file of Python App to run
+    ( Ex. `./bin/spark-submit \
+           --master spark://Justins-MacBook-Pro-7.local:7077 \
+           /Users/justinkim/Documents/CSUF/Spring2023/CPSC531/finalProjectMongodb/predictingMushroomType/app.py \
+           1000` )
+   - Check status of job by accessing web ui ( Ex. `http://localhost:8080/` )
+ 4. To run Mushroom Type Prediction Web Application
+   - 
 
 
 
