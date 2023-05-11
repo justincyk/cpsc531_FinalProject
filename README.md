@@ -1,7 +1,7 @@
 # Spring 2023 CPSC 531-03 Final Project Implementaion
 ### Member: Justin Kim
 
-
+##### * main branch contains ML Python App that uses local storage Mushroom.csv while mongodbBranch contains ML Python App that uses Mongodb database to access Mushroom collection *
 
 ## Project Functionality, Architecture & Design
 ### 3 Parts:
