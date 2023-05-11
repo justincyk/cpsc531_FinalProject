@@ -101,10 +101,10 @@
 
 
 ## Test Results
-   1. ML Logistic Regression Prediction Model Accuracy: 
-   2. ML Decision Tree Classifier Prediction Model Accuracy:
-   3. ML Random Forest Classifier Prediction Model Accuracy:
-   4. ML Gradient Boosting Prediction Model Accuracy:
-   5. ML Naive Bayes Prediction Model Accuracy:
+   1. ML Logistic Regression Prediction Model Accuracy: 99%
+   2. ML Decision Tree Classifier Prediction Model Accuracy: 99%
+   3. ML Random Forest Classifier Prediction Model Accuracy: 99%
+   4. ML Gradient Boosting Prediction Model Accuracy: 99%
+   5. ML Naive Bayes Prediction Model Accuracy: 95%
 
 
