@@ -59,12 +59,25 @@
 ## Project Deployment Instructions ( On Apple Macbook )
 1. Clone GitHub repository to local computer
 2. Access cloned GitHub repository on terminal
-3. Once in directory of cloned GitHub repository, type `source bin/activate` to start venv environment
-4. Once venv environment is started, type `pip3 install -r requirements.txt` to download necessary packages to run Python ML Mushroom Type Prediction Application and Mushroom Type Prediction Web Application
+3. Once in directory of cloned GitHub repository, type and enter `source bin/activate` to start venv environment
+4. Once venv environment is started, type and enter `pip3 install -r requirements.txt` to download necessary packages to run Python ML Mushroom Type Prediction Application and Mushroom Type Prediction Web Application
 
 
 
 ## Steps to Run the Application
+1. To run Python ML Mushroom Type Prediction Application without Spark Standalone Cluster using Mushroom.csv local file
+   -  Go to `./predictingMushroomType` folder
+   -  Type and enter `python3 app.py` to run application
+   -  All saved ML models in the current directory will be accessed and rewritten every time application is run
+   -  Results from application will be printed to terminal
+2. To run Python ML Mushroom Type Prediction Application without Spark Standalone Cluster using Mongodb Database
+   - Change Git branch by typing `git checkout mongodbBranch`
+   -  Go to `./predictingMushroomType` folder
+   -  Type and enter `python3 app.py` to run application
+   -  Mushroom data will be retrieved by accessing Mongodb database through PyMongo
+   -  All saved ML models in the current directory will be accessed and rewritten every time application is run
+3. To run Python ML Mushroom Type Prediction Application on Spark Standalone Cluster using Mongodb Database
+   - Have 
 
 
 
