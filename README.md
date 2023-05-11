@@ -89,14 +89,14 @@
    - End Worker Node
    - End Master Node
  4. To run Mushroom Type Prediction Web Application
-   - Go to directory `./mushroomWebApp`
-   - Type and enter `Flask run`
-   - Access web application by going on `http://127.0.0.1:5000`
-   - Fill out the form according to your mushroom's characteristics
-   - Submit form once form is completed
-   - Web Application will refresh and inform you if the Mushroom is poisonous or not
-   - Go to `http://127.0.0.1:5000/chart` to access data analysis graphs fetched from Mongodb database
-   - Press control+c on terminal to end Flask session
+      - Go to directory `./mushroomWebApp`
+      - Type and enter `Flask run`
+      - Access web application by going on `http://127.0.0.1:5000`
+      - Fill out the form according to your mushroom's characteristics
+      - Submit form once form is completed
+      - Web Application will refresh and inform you if the Mushroom is poisonous or not
+      - Go to `http://127.0.0.1:5000/chart` to access data analysis graphs fetched from Mongodb database
+      - Press control+c on terminal to end Flask session
 
 
 
